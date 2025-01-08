@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circular Menu Demo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="content-wrapper">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Dorji </br>
+                    Shantiniketan</h1>
+
+            </div>
+        </section>
+
+        <!-- Circular Menu Section -->
+        <div class="circular-menu">
+            <div class="ring">
+                <div class="segment segment-1" data-title="Upcycle"
+                    data-description="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
+                    <div class="segment-content">
+                        <img src="assets/img4.jpeg" alt="Segment 1">
+                    </div>
+                </div>
+                <div class="segment segment-2" data-title="Sustainable"
+                    data-description="Maecenas neque urna, ultrices nec malesuada.">
+                    <div class="segment-content">
+                        <img src="assets/img5.jpeg" alt="Segment 2">
+                    </div>
+                </div>
+                <div class="segment segment-3" data-title="Eco-Friendly"
+                    data-description="Fusce sit amet ligula suscipit, luctus massa vitae.">
+                    <div class="segment-content">
+                        <img src="assets/img6.jpeg" alt="Segment 3">
+                    </div>
+                </div>
+                <div class="segment segment-4" data-title="Traditional"
+                    data-description="Vestibulum ante ipsum primis in faucibus orci.">
+                    <div class="segment-content">
+                        <img src="assets/img1.jpeg" alt="Segment 4">
+                    </div>
+                </div>
+                <div class="segment segment-5" data-title="Artisan"
+                    data-description="Praesent euismod, nisi vel consectetur euismod.">
+                    <div class="segment-content">
+                        <img src="assets/img2.jpeg" alt="Segment 5">
+                    </div>
+                </div>
+                <div class="segment segment-6" data-title="Handcrafted"
+                    data-description="Integer nec odio. Praesent libero.">
+                    <div class="segment-content">
+                        <img src="assets/img3.jpeg" alt="Segment 6">
+                    </div>
+                </div>
+            </div>
+            <div class="center-button">
+                <img src="assets/button.png" alt="Center Button">
+            </div>
+            <h1 class="title"></h1>
+            <p class="description"></p>
+        </div>
+
+        <div class="scroll-spacer"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Segment hover handlers
+            document.querySelectorAll('.segment').forEach(segment => {
+                segment.addEventListener('mouseenter', () => {
+                    const menu = segment.closest('.circular-menu');
+                    const title = menu.querySelector('.title');
+                    const description = menu.querySelector('.description');
+
+                    // Set content
+                    title.textContent = segment.dataset.title || '';
+                    description.textContent = segment.dataset.description || '';
+
+                    // Show elements
+                    title.style.opacity = '1';
+                    description.style.opacity = '1';
+
+                    // Debug
+                    console.log('Hover:', {
+                        title: title.textContent,
+                        description: description.textContent,
+                        titleOpacity: title.style.opacity,
+                        descOpacity: description.style.opacity
+                    });
+                });
+
+                segment.addEventListener('mouseleave', () => {
+                    const menu = segment.closest('.circular-menu');
+                    const title = menu.querySelector('.title');
+                    const description = menu.querySelector('.description');
+
+                    title.style.opacity = '0';
+                    description.style.opacity = '0';
+                });
+            });
+
+            // Improved scroll handling with background transition
+            const handleScroll = () => {
+                const menu = document.querySelector('.circular-menu');
+                const hero = document.querySelector('.hero');
+                if (!menu || !hero) return;
+
+                const scrollPosition = window.pageYOffset;
+                const heroBottom = hero.offsetHeight;
+                const triggerPoint = heroBottom - window.innerHeight / 2;
+
+                // Add/remove scrolled class for menu and background transition
+                if (scrollPosition > triggerPoint) {
+                    menu.classList.add('scrolled');
+                } else {
+                    menu.classList.remove('scrolled');
+                }
+            };
+
+            // Throttled scroll listener
+            let lastScrollTime = 0;
+            const throttleDelay = 16;
+
+            window.addEventListener('scroll', () => {
+                const now = Date.now();
+                if (now - lastScrollTime >= throttleDelay) {
+                    window.requestAnimationFrame(handleScroll);
+                    lastScrollTime = now;
+                }
+            });
+
+            // Initial check
+            handleScroll();
+        });
+    </script>
+</body>
+
+</html>

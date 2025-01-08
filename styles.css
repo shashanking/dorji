@@ -1,0 +1,323 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    background: #f5f5f5;
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: url('assets/bg.png') no-repeat center center;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    color: white;
+    overflow: visible;
+}
+
+.hero-content {
+    width: 100%;
+    padding-left: 80px;
+    text-align: left;
+}
+
+.hero-content h1 {
+    font-size: 72px;
+    font-weight: normal;
+    margin: 0;
+    line-height: 1.2;
+    font-family: serif;
+}
+
+.hero-content::after {
+    content: '';
+    display: block;
+    width: 450px;
+    height: 2px;
+    background-color: white;
+    margin-top: 20px;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.hero * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Elementor container adjustments */
+.elementor-widget-html {
+    height: 150vh;
+    overflow: visible;
+}
+
+/* Main container styling */
+.circular-menu {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    top: calc(100vh - 250px);
+    transform: translateY(0);
+    transition: transform 1s cubic-bezier(0.4, 0.0, 0.2, 1);
+    will-change: transform;
+    z-index: 10;
+}
+
+.circular-menu.scrolled {
+    position: fixed;
+    top: 0;
+    transform: translateY(50vh);
+}
+
+/* Ring that contains all segments */
+.ring {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    transition: transform 1s cubic-bezier(0.4, 0.0, 0.2, 1);
+    will-change: transform;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.circular-menu.scrolled .ring {
+    transform: translate(-50%, -50%);
+}
+
+/* Individual segment styling */
+.segment {
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    top: 50%;
+    left: 50%;
+    transform-origin: 0 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+/* Image container within segments */
+.segment-content {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    top: -65%;
+    left: -65%;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+
+/* Image styling */
+.segment img {
+    width: 100%;
+    height: 120%;
+    object-fit: cover;
+    object-position: center;
+    transform-origin: center;
+    transform: scale(0.8);
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+/* Segment rotation angles */
+.segment:nth-child(1) {
+    transform: rotate(0deg) skew(30deg);
+}
+
+.segment:nth-child(2) {
+    transform: rotate(60deg) skew(30deg);
+}
+
+.segment:nth-child(3) {
+    transform: rotate(120deg) skew(30deg);
+}
+
+.segment:nth-child(4) {
+    transform: rotate(180deg) skew(30deg);
+}
+
+.segment:nth-child(5) {
+    transform: rotate(240deg) skew(30deg);
+}
+
+.segment:nth-child(6) {
+    transform: rotate(300deg) skew(30deg);
+}
+
+/* Counter-rotate and counter-skew images */
+.segment:nth-child(1) .segment-content {
+    transform: skew(-30deg) rotate(0deg);
+}
+
+.segment:nth-child(2) .segment-content {
+    transform: skew(-30deg) rotate(-60deg);
+}
+
+.segment:nth-child(3) .segment-content {
+    transform: skew(-30deg) rotate(-120deg);
+}
+
+.segment:nth-child(4) .segment-content {
+    transform: skew(-30deg) rotate(-180deg);
+}
+
+.segment:nth-child(5) .segment-content {
+    transform: skew(-30deg) rotate(-240deg);
+}
+
+.segment:nth-child(6) .segment-content {
+    transform: skew(-30deg) rotate(-300deg);
+}
+
+/* Center button positioning */
+.center-button {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    top: 27.5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    transition: all 1s cubic-bezier(0.4, 0.0, 0.2, 1);
+    will-change: transform, top;
+}
+
+.center-button img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.circular-menu.scrolled .center-button {
+    top: 0%;
+    transform: translate(-50%, -50%);
+}
+
+/* Title and description */
+.title,
+.description {
+    position: absolute;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+    z-index: 20;
+}
+
+.title {
+    left: 80px;
+    top: -40%;
+    font-size: 72px;
+    font-weight: normal;
+    margin: 0;
+    color: #333;
+    font-family: serif;
+    transform: translateY(0);
+    text-align: left;
+}
+
+.description {
+    right: 80px;
+    top: 30%;
+    width: 400px;
+    color: #666;
+    line-height: 1.6;
+    text-align: right;
+    transform: translateY(-50%);
+}
+
+.circular-menu.scrolled .title {
+    transform: translateY(0);
+}
+
+.circular-menu.scrolled .description {
+    transform: translateY(calc(-50% - 120px));
+}
+
+/* Hover effects */
+.ring:hover .segment:not(:hover) {
+    opacity: 0.3;
+}
+
+.ring:hover .segment:not(:hover) img {
+    filter: grayscale(50%);
+}
+
+/* Additional Elementor-specific adjustments */
+@media (max-width: 767px) {
+    .ring {
+        width: 400px;
+        height: 400px;
+    }
+
+    .segment {
+        width: 200px;
+        height: 200px;
+    }
+
+    .center-button {
+        width: 120px;
+        height: 120px;
+    }
+
+    .title {
+        font-size: 48px;
+    }
+
+    .description {
+        width: 300px;
+    }
+}
+
+/* Container for proper scroll behavior */
+.content-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* Ensure enough scroll space */
+.scroll-spacer {
+    height: 100vh;
+    background: url('assets/bg2.png') no-repeat center center;
+    background-size: cover;
+    opacity: 0;
+    transition: opacity 1s cubic-bezier(0.4, 0.0, 0.2, 1);
+    position: relative;
+}
+
+.scroll-spacer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(180deg, #FFF9DF 0%, rgba(255, 249, 223, 0) 23.5%, rgba(255, 249, 223, 0) 74%, #FFF9DF 100%);
+}
+
+/* Show background when menu is scrolled */
+.circular-menu.scrolled~.scroll-spacer {
+    opacity: 1;
+}

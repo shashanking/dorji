@@ -1,0 +1,86 @@
+
+
+
+ <div class="circular-menu">
+    <div class="ring">
+        <div class="segment segment-1" data-title="Upcycle" data-description="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
+            <div class="segment-content">
+                <img src="https://darkseagreen-grouse-158315.hostingersite.com/wp-content/uploads/2025/01/img4-scaled.jpeg" alt="Segment 1">
+            </div>
+        </div>
+        <div class="segment segment-2" data-title="Sustainable" data-description="Maecenas neque urna, ultrices nec malesuada.">
+            <div class="segment-content">
+                <img src="https://darkseagreen-grouse-158315.hostingersite.com/wp-content/uploads/2025/01/img5-scaled.jpeg" alt="Segment 2">
+            </div>
+        </div>
+        <div class="segment segment-3" data-title="Eco-Friendly" data-description="Fusce sit amet ligula suscipit, luctus massa vitae.">
+            <div class="segment-content">
+                <img src="https://darkseagreen-grouse-158315.hostingersite.com/wp-content/uploads/2025/01/img6-scaled.jpeg" alt="Segment 3">
+            </div>
+        </div>
+        <div class="segment segment-4" data-title="Traditional" data-description="Vestibulum ante ipsum primis in faucibus orci.">
+            <div class="segment-content">
+                <img src="https://darkseagreen-grouse-158315.hostingersite.com/wp-content/uploads/2025/01/img-scaled.jpeg" alt="Segment 4">
+            </div>
+        </div>
+        <div class="segment segment-5" data-title="Artisan" data-description="Praesent euismod, nisi vel consectetur euismod.">
+            <div class="segment-content">
+                <img src="https://darkseagreen-grouse-158315.hostingersite.com/wp-content/uploads/2025/01/img2.jpeg" alt="Segment 5">
+            </div>
+        </div>
+        <div class="segment segment-6" data-title="Handcrafted" data-description="Integer nec odio. Praesent libero.">
+            <div class="segment-content">
+                <img src="https://darkseagreen-grouse-158315.hostingersite.com/wp-content/uploads/2025/01/img3-scaled.jpeg" alt="Segment 6">
+            </div>
+        </div>
+    </div>
+    <div class="center-button">
+        <img src="https://darkseagreen-grouse-158315.hostingersite.com/wp-content/uploads/2025/01/wooden-button.png" alt="Center Button">
+    </div>
+    <h1 class="title"></h1>
+    <p class="description"></p>
+</div>
+
+<div class="scroll-spacer"></div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Segment hover handlers
+        document.querySelectorAll('.segment').forEach(segment => {
+            segment.addEventListener('mouseenter', () => {
+                const title = segment.closest('.circular-menu').querySelector('.title');
+                const description = segment.closest('.circular-menu').querySelector('.description');
+                title.textContent = segment.dataset.title;
+                description.textContent = segment.dataset.description;
+                title.style.opacity = '1';
+                description.style.opacity = '1';
+            });
+
+            segment.addEventListener('mouseleave', () => {
+                const title = segment.closest('.circular-menu').querySelector('.title');
+                const description = segment.closest('.circular-menu').querySelector('.description');
+                title.style.opacity = '0';
+                description.style.opacity = '0';
+            });
+        });
+
+        // Scroll handling
+        const handleScroll = () => {
+            const menu = document.querySelector('.circular-menu');
+            if (!menu) return;
+            
+            const rect = menu.getBoundingClientRect();
+            const parentRect = menu.closest('.elementor-widget-html').getBoundingClientRect();
+            const scrollPosition = window.scrollY - parentRect.top;
+            
+            if (scrollPosition > parentRect.height * 0.1) {
+                menu.classList.add('scrolled');
+            } else {
+                menu.classList.remove('scrolled');
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        handleScroll(); // Initial check
+    });
+</script> 
