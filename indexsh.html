@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circular Menu Demo by SH</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="content-wrapper">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Dorji </br> Shantiniketan</h1>
+            </div>
+        </section>
+
+        <!-- Circular Menu Section -->
+        <div class="circular-menu">
+            <div class="ring">
+                <div class="segment segment-1" data-title="Upcycle" data-description="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
+                    <div class="segment-content">
+                        <img src="assets/img4.jpeg" alt="Segment 1" class="img img1">
+                        <div class="segment-hover">
+                            <h2 class="segment-title">Upcycle</h2>
+                            <p class="segment-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="segment segment-2" data-title="Sustainable"
+                data-description="Maecenas neque urna, ultrices nec malesuada.">
+                    <div class="segment-content">
+                        <img src="assets/img5.jpeg" alt="Segment 2" class="img img2">
+                        <div class="segment-hover">
+                            <h2 class="segment-title">Sustainable</h2>
+                            <p class="segment-description">Maecenas neque urna, ultrices nec malesuada.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="segment segment-3" data-title="Eco-Friendly"
+                data-description="Fusce sit amet ligula suscipit, luctus massa vitae.">
+                    <div class="segment-content">
+                        <img src="assets/img6.jpeg" alt="Segment 3" class="img img3">
+                        <div class="segment-hover">
+                            <h2 class="segment-title">Eco-Friendly</h2>
+                            <p class="segment-description">Fusce sit amet ligula suscipit, luctus massa vitae.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="segment segment-4" data-title="Traditional"
+                data-description="Vestibulum ante ipsum primis in faucibus orci.">
+                    <div class="segment-content">
+                        <img src="assets/img1.jpeg" alt="Segment 4" class="img img4">
+                        <div class="segment-hover">
+                            <h2 class="segment-title">Traditional</h2>
+                            <p class="segment-description">Vestibulum ante ipsum primis in faucibus orci.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="segment segment-5" data-title="Artisan"
+                data-description="Praesent euismod, nisi vel consectetur euismod.">
+                    <div class="segment-content">
+                        <img src="assets/img2.jpeg" alt="Segment 5" class="img img5">
+                        <div class="segment-hover">
+                            <h2 class="segment-title">Artisan</h2>
+                            <p class="segment-description">Praesent euismod, nisi vel consectetur euismod.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="segment segment-6" data-title="Handcrafted"
+                data-description="Integer nec odio. Praesent libero.">
+                    <div class="segment-content">
+                        <img src="assets/img3.jpeg" alt="Segment 6" class="img img6">
+                        <div class="segment-hover">
+                            <h2 class="segment-title">Handcrafted</h2>
+                            <p class="segment-description">Integer nec odio. Praesent libero.</p>
+                        </div>
+                    </div>
+                </div>
+              
+                
+
+            </div>
+            <div class="center-button">
+                <img src="assets/button.png" alt="Center Button">
+            </div>
+        </div>
+
+        <div class="scroll-spacer"></div>
+    </div>
+
+    <script>
+        // Get the circular menu element
+        const circularMenu = document.querySelector('.circular-menu');
+
+        // Listen for scroll events
+        window.addEventListener('scroll', () => {
+            // Get the total height of the page and the scroll position
+            const scrollPosition = window.scrollY;
+            const documentHeight = document.documentElement.scrollHeight - window.innerHeight; // Total scrollable height
+
+            // Calculate the scroll percentage
+            const scrollPercentage = (scrollPosition / documentHeight) * 100;
+
+            // Apply the 'scrolled' class when the scroll percentage is more than 40%
+            if (scrollPercentage > 40) {
+                circularMenu.classList.add('scrolled');
+            } else {
+                circularMenu.classList.remove('scrolled');
+            }
+        });
+
+        // Add the 'loaded' class when the page is fully loaded
+        window.addEventListener('load', () => {
+            circularMenu.classList.add('loaded');
+        });
+
+
+    </script>
+
+</body>
+
+</html>

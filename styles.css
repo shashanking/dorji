@@ -1,323 +1,392 @@
 body {
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-    background: #f5f5f5;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background: #f5f5f5;
 }
 
 /* Hero Section */
 .hero {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    background: url('assets/bg.png') no-repeat center center;
-    background-size: cover;
-    display: flex;
-    align-items: center;
-    color: white;
-    overflow: visible;
+  position: relative;
+  height: 100vh;
+  background: url("assets/bg.png") no-repeat center center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  color: white;
+  overflow: visible;
 }
 
 .hero-content {
-    width: 100%;
-    padding-left: 80px;
-    text-align: left;
+  width: 100%;
+  padding-left: 80px;
+  text-align: left;
 }
 
 .hero-content h1 {
-    font-size: 72px;
-    font-weight: normal;
-    margin: 0;
-    line-height: 1.2;
-    font-family: serif;
+  font-size: 72px;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.2;
+  font-family: serif;
 }
 
 .hero-content::after {
-    content: '';
-    display: block;
-    width: 450px;
-    height: 2px;
-    background-color: white;
-    margin-top: 20px;
+  content: "";
+  display: block;
+  width: 450px;
+  height: 2px;
+  background-color: white;
+  margin-top: 20px;
 }
 
 .hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.3);
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
 }
 
 .hero * {
-    position: relative;
-    z-index: 1;
+  position: relative;
+  z-index: 1;
 }
 
 /* Elementor container adjustments */
 .elementor-widget-html {
-    height: 150vh;
-    overflow: visible;
+  height: 150vh;
+  overflow: visible;
 }
 
 /* Main container styling */
 .circular-menu {
-    position: absolute;
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    top: calc(100vh - 250px);
-    transform: translateY(0);
-    transition: transform 1s cubic-bezier(0.4, 0.0, 0.2, 1);
-    will-change: transform;
-    z-index: 10;
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  top: 100%; /* Start the circular menu outside the viewport (bottom) */
+  transform: translateY(0);
+  transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1), opacity 1s ease-in-out;
+  will-change: transform, opacity;
+  z-index: 10;
+  opacity: 0; /* Initially hidden */
 }
 
+/* Animation for the circular menu to transition from bottom */
+@keyframes slideUp {
+  0% {
+    top: 100%;
+    opacity: 0;
+  }
+  100% {
+    top: calc(100vh - 250px); /* Final position */
+    opacity: 1;
+  }
+}
+
+/* Apply the slideUp animation when the page is loaded */
+.circular-menu.loaded {
+  animation: slideUp 1s ease-out forwards;
+}
+
+/* When the page is scrolled, we want it to scale and move */
 .circular-menu.scrolled {
-    position: fixed;
-    top: 0;
-    transform: translateY(50vh);
+  position: fixed;
+  top: 50%; /* Center vertically */
+  transform: translateY(3%) scale(1.5); /* Move to the center and scale */
+  opacity: 1;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+/* Optional: Add some smoothness for when it transitions back to the normal state */
+.circular-menu:not(.scrolled) {
+  transform: translateY(0);
 }
 
 /* Ring that contains all segments */
 .ring {
-    position: absolute;
-    width: 500px;
-    height: 500px;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, 0);
-    transition: transform 1s cubic-bezier(0.4, 0.0, 0.2, 1);
-    will-change: transform;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.8);
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+  border-radius: 50%;
+  overflow: hidden;
+  /* border: 1px solid rgba(255, 255, 255, 0.8); */
 }
-
 .circular-menu.scrolled .ring {
-    transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 
 /* Individual segment styling */
 .segment {
-    position: absolute;
-    width: 250px;
-    height: 250px;
-    top: 50%;
-    left: 50%;
-    transform-origin: 0 0;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    cursor: pointer;
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  top: 50%;
+  left: 50%;
+  transform-origin: 0 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  
 }
-
-/* Image container within segments */
+/* Segment hover effects for the title and description */
 .segment-content {
-    position: absolute;
-    width: 500px;
-    height: 500px;
-    top: -65%;
-    left: -65%;
-    overflow: hidden;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    transition: transform 0.3s ease;
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  top: -65%;
+  left: -65%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  transition: transform 0.3s ease;
+  overflow: hidden;
+}
+.segment-content:hover{
+    border: 12px solid wheat;
+}
+/* Title and description for hover */
+.segment-hover {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0; /* Hidden by default */
+  visibility: hidden;
+  text-align: center;
+  color: white;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.segment:hover img {
+    transform: scale(1.1); /* Increase the size of the image on hover */
+    z-index: 1; /* Ensure it stays on top */
+    border: 3px solid #fff; /* Add a white border when hovered */
+  }
+
+/* Segment text styles */
+.segment-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+  color: #fff;
+  text-transform: uppercase;
 }
 
+.segment-description {
+  font-size: 16px;
+  color: #fff;
+  line-height: 1.6;
+  max-width: 200px;
+  margin: 0 auto;
+}
+/* Show hover content only when circular menu is scrolled and the segment is hovered */
+.circular-menu.scrolled .segment:hover .segment-hover {
+  opacity: 1;
+  visibility: visible;
+}
 /* Image styling */
 .segment img {
-    width: 100%;
-    height: 120%;
-    object-fit: cover;
-    object-position: center;
-    transform-origin: center;
-    transform: scale(0.8);
-    transition: transform 0.3s ease, filter 0.3s ease;
+  width: 100%;
+  height: 120%;
+  object-fit: cover;
+  object-position: center;
+  transform-origin: center;
+  transform: scale(0.8);
+  transition: transform 0.3s ease, filter 0.3s ease;
 }
 
 /* Segment rotation angles */
 .segment:nth-child(1) {
-    transform: rotate(0deg) skew(30deg);
+  transform: rotate(0deg) skew(30deg);
 }
 
 .segment:nth-child(2) {
-    transform: rotate(60deg) skew(30deg);
+  transform: rotate(60deg) skew(30deg);
 }
 
 .segment:nth-child(3) {
-    transform: rotate(120deg) skew(30deg);
+  transform: rotate(120deg) skew(30deg);
 }
 
 .segment:nth-child(4) {
-    transform: rotate(180deg) skew(30deg);
+  transform: rotate(180deg) skew(30deg);
 }
 
 .segment:nth-child(5) {
-    transform: rotate(240deg) skew(30deg);
+  transform: rotate(240deg) skew(30deg);
 }
 
 .segment:nth-child(6) {
-    transform: rotate(300deg) skew(30deg);
+  transform: rotate(300deg) skew(30deg);
 }
 
 /* Counter-rotate and counter-skew images */
 .segment:nth-child(1) .segment-content {
-    transform: skew(-30deg) rotate(0deg);
+  transform: skew(-30deg) rotate(0deg);
 }
 
 .segment:nth-child(2) .segment-content {
-    transform: skew(-30deg) rotate(-60deg);
+  transform: skew(-30deg) rotate(-60deg);
 }
 
 .segment:nth-child(3) .segment-content {
-    transform: skew(-30deg) rotate(-120deg);
+  transform: skew(-30deg) rotate(-120deg);
 }
 
 .segment:nth-child(4) .segment-content {
-    transform: skew(-30deg) rotate(-180deg);
+  transform: skew(-30deg) rotate(-180deg);
 }
 
 .segment:nth-child(5) .segment-content {
-    transform: skew(-30deg) rotate(-240deg);
+  transform: skew(-30deg) rotate(-240deg);
 }
 
 .segment:nth-child(6) .segment-content {
-    transform: skew(-30deg) rotate(-300deg);
+  transform: skew(-30deg) rotate(-300deg);
 }
 
 /* Center button positioning */
 .center-button {
-    position: absolute;
-    width: 150px;
-    height: 150px;
-    top: 27.5%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 10;
-    transition: all 1s cubic-bezier(0.4, 0.0, 0.2, 1);
-    will-change: transform, top;
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  top: 27.5%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
 }
 
 .center-button img {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .circular-menu.scrolled .center-button {
-    top: 0%;
-    transform: translate(-50%, -50%);
+  top: 0%;
+  transform: translate(-50%, -50%);
 }
 
 /* Title and description */
 .title,
 .description {
-    position: absolute;
-    opacity: 0;
-    transition: opacity 0.3s ease, transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    pointer-events: none;
-    z-index: 20;
+  position: absolute;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+  z-index: 20;
 }
-
+.title:hover,
+.description:hover {
+  opacity: 1;
+}
 .title {
-    left: 80px;
-    top: -40%;
-    font-size: 72px;
-    font-weight: normal;
-    margin: 0;
-    color: #333;
-    font-family: serif;
-    transform: translateY(0);
-    text-align: left;
+  left: 80px;
+  top: -40%;
+  font-size: 72px;
+  font-weight: normal;
+  margin: 0;
+  color: #333;
+  font-family: serif;
+  transform: translateY(0);
+  text-align: left;
 }
 
 .description {
-    right: 80px;
-    top: 30%;
-    width: 400px;
-    color: #666;
-    line-height: 1.6;
-    text-align: right;
-    transform: translateY(-50%);
+  right: 80px;
+  top: 30%;
+  width: 400px;
+  color: #666;
+  line-height: 1.6;
+  text-align: right;
+  transform: translateY(-50%);
 }
 
 .circular-menu.scrolled .title {
-    transform: translateY(0);
+  transform: translateY(0);
 }
 
 .circular-menu.scrolled .description {
-    transform: translateY(calc(-50% - 120px));
+  transform: translateY(calc(-50% - 120px));
 }
 
 /* Hover effects */
 .ring:hover .segment:not(:hover) {
-    opacity: 0.3;
+  opacity: 0.3;
 }
 
 .ring:hover .segment:not(:hover) img {
-    filter: grayscale(50%);
+  filter: grayscale(50%);
 }
 
-/* Additional Elementor-specific adjustments */
+/* Responsive adjustments */
 @media (max-width: 767px) {
-    .ring {
-        width: 400px;
-        height: 400px;
-    }
+  .ring {
+    width: 400px;
+    height: 400px;
+  }
 
-    .segment {
-        width: 200px;
-        height: 200px;
-    }
+  .segment {
+    width: 200px;
+    height: 200px;
+  }
 
-    .center-button {
-        width: 120px;
-        height: 120px;
-    }
+  .center-button {
+    width: 120px;
+    height: 120px;
+  }
 
-    .title {
-        font-size: 48px;
-    }
+  .title {
+    font-size: 48px;
+  }
 
-    .description {
-        width: 300px;
-    }
+  .description {
+    width: 300px;
+  }
 }
-
 /* Container for proper scroll behavior */
 .content-wrapper {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
 }
 
 /* Ensure enough scroll space */
 .scroll-spacer {
-    height: 100vh;
-    background: url('assets/bg2.png') no-repeat center center;
-    background-size: cover;
-    opacity: 0;
-    transition: opacity 1s cubic-bezier(0.4, 0.0, 0.2, 1);
-    position: relative;
+  height: 100vh;
+  background: url("assets/bg2.png") no-repeat center center;
+  background-size: cover;
+  opacity: 0;
+  transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
 }
 
 .scroll-spacer::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(180deg, #FFF9DF 0%, rgba(255, 249, 223, 0) 23.5%, rgba(255, 249, 223, 0) 74%, #FFF9DF 100%);
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    180deg,
+    #fff9df 0%,
+    rgba(255, 249, 223, 0) 23.5%,
+    rgba(255, 249, 223, 0) 74%,
+    #fff9df 100%
+  );
 }
 
 /* Show background when menu is scrolled */
-.circular-menu.scrolled~.scroll-spacer {
-    opacity: 1;
+.circular-menu.scrolled ~ .scroll-spacer {
+  opacity: 1;
 }
