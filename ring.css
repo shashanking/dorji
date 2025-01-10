@@ -1,0 +1,52 @@
+.circle {
+  height: 600px;
+  width: 600px;
+}
+.row1 div,
+.row2 div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  width: 200px;
+}
+/* ring.css */
+.card {
+    width: 90vw;
+    height: 100%;
+    background-color: rgb(176, 113, 213);
+    display: flex;
+    flex-direction: column; /* Stacking elements vertically */
+    align-items: center;
+    justify-content: center; /* Centering content */
+    position: relative; /* Ensuring absolute positioning works */
+}
+.ring{
+    display: flex;
+}
+
+.title, .description {
+    font-weight: bolder;
+    width: 30vw;
+    position: absolute; /* Allowing absolute positioning */
+    transition: opacity 0.3s ease; /* Smooth opacity transition */
+}
+
+.title {
+    font-size: 6rem;
+    left: 20px;
+    top: 40px;
+    opacity: 0;
+}
+
+.description {
+    font-size: 1.2rem;
+    right: 40px;
+    bottom: 20px;
+    opacity: 0;
+}
+
+.img:hover ~ .title,
+.img:hover ~ .description {
+    opacity: 1;
+}

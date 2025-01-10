@@ -153,22 +153,11 @@ body {
 .segment-content:hover{
     border: 12px solid wheat;
 }
-/* Title and description for hover */
-.segment-hover {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  opacity: 0; /* Hidden by default */
-  visibility: hidden;
-  text-align: center;
-  color: white;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-}
+
 .segment:hover img {
-    transform: scale(1.1); /* Increase the size of the image on hover */
-    z-index: 1; /* Ensure it stays on top */
-    border: 3px solid #fff; /* Add a white border when hovered */
+    /* transform: scale(1.1);  */
+    z-index: 1; 
+    border: 3px solid #fff; 
   }
 
 /* Segment text styles */
@@ -178,6 +167,9 @@ body {
   margin: 0;
   color: #fff;
   text-transform: uppercase;
+  left: 20px;
+    top: 40px;
+    opacity: 0;
 }
 
 .segment-description {
@@ -186,9 +178,17 @@ body {
   line-height: 1.6;
   max-width: 200px;
   margin: 0 auto;
+  right: 40px;
+  bottom: 20px;
+  opacity: 0;
+}
+.segment-title, .segment-description { opacity: 0; transition: opacity 0.3s ease;}
+.segment-content:hover ~ .segment-title,
+.segment-content:hover ~ .segment-description {
+    opacity: 1;
 }
 /* Show hover content only when circular menu is scrolled and the segment is hovered */
-.circular-menu.scrolled .segment:hover .segment-hover {
+.circular-menu.scrolled .segment:hover {
   opacity: 1;
   visibility: visible;
 }
@@ -197,6 +197,7 @@ body {
   width: 100%;
   height: 120%;
   object-fit: cover;
+  /* scale: 0.6; */
   object-position: center;
   transform-origin: center;
   transform: scale(0.8);
@@ -319,15 +320,15 @@ body {
   transform: translateY(calc(-50% - 120px));
 }
 
-/* Hover effects */
-.ring:hover .segment:not(:hover) {
+
+/* Apply hover effects only when scrolled class is present */
+.circular-menu.scrolled .ring:hover .segment:not(:hover) {
   opacity: 0.3;
 }
 
-.ring:hover .segment:not(:hover) img {
+.circular-menu.scrolled .ring:hover .segment:not(:hover) img {
   filter: grayscale(50%);
 }
-
 /* Responsive adjustments */
 @media (max-width: 767px) {
   .ring {

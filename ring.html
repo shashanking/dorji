@@ -1,0 +1,195 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hover Effect on Circular Segments</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f8f5e4;
+    }
+
+    .circle-container {
+      position: relative;
+      width: 400px; /* Circle diameter */
+      height: 400px;
+      border-radius: 50%;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .segment {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      clip-path: circle(50%);
+      transform-origin: 50% 50%;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    /* Define each segment with rotation and colors */
+    .segment:nth-child(1) {
+      background-color: #FF6F61;
+      clip-path: polygon(50% 50%, 100% 0%, 100% 50%);
+      /* transform: rotate(0deg); */
+    }
+
+    .segment:nth-child(2) {
+      background-color: #6B5B95;
+      clip-path: polygon(50% 50%, 100% 50%, 100% 100%);
+      /* transform: rotate(60deg); */
+    }
+
+    .segment:nth-child(3) {
+      background-color: #88B04B;
+      clip-path: polygon(50% 50%, 100% 100%, 50% 100%);
+      /* transform: rotate(120deg); */
+    }
+
+    .segment:nth-child(4) {
+      background-color: #F7CAC9;
+      clip-path: polygon(50% 50%, 50% 100%, 0% 100%);
+      /* transform: rotate(180deg); */
+    }
+
+    .segment:nth-child(5) {
+      background-color: #92A8D1;
+      clip-path: polygon(50% 50%, 0% 100%, 0% 50%);
+      /* transform: rotate(240deg); */
+    }
+
+    .segment:nth-child(6) {
+      background-color: #955251;
+      clip-path: polygon(50% 50%, 0% 50%, 0% 0%);
+      /* transform: rotate(300deg); */
+    }
+
+    /* Hover Effect */
+    .segment:hover {
+      transform: scale(1.1)  translate(-50px); /* Keeps the rotation intact while scaling */
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+      border: 3px solid #8b4513; /* Add border effect */
+      z-index: 10; /* Bring the hovered segment to the front */
+    }
+  </style>
+</head>
+<body>
+  <div class="circle-container">
+    <div class="segment"></div>
+    <div class="segment"></div>
+    <div class="segment"></div>
+    <div class="segment"></div>
+    <div class="segment"></div>
+    <div class="segment"></div>
+  </div>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="ring.css">
+</head>
+
+<body style="background-color: rebeccapurple;">
+  <!DOCTYPE html>
+  <html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hover Effect</title>
+    <link rel="stylesheet" href="ring.css">
+  </head>
+
+  <body>
+    <div class="ring">
+      <div>
+        <div class="card">
+          <div class="img">
+            <img style="width: 400px;"
+              src="https://cdn.britannica.com/45/5645-050-B9EC0205/head-treasure-flower-disk-flowers-inflorescence-ray.jpg"
+              alt="image">
+          </div>
+          <div class="title">lorem4</div>
+          <div class="description">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nulla quidem quae, corrupti
+            tempore enim sit et corporis voluptatibus in totam excepturi facilis sapiente ipsam consequatur nostrum
+            doloribus. Quidem, eaque modi?</div>
+        </div>
+        <div class="card">
+          <div class="img">
+            <img style="width: 400px;"
+              src="https://cdn.britannica.com/45/5645-050-B9EC0205/head-treasure-flower-disk-flowers-inflorescence-ray.jpg"
+              alt="image">
+          </div>
+          <div class="title">lorem5</div>
+          <div class="description">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nulla quidem quae, corrupti
+            tempore enim sit et corporis voluptatibus in totam excepturi facilis sapiente ipsam consequatur nostrum
+            doloribus. Quidem, eaque modi?</div>
+        </div>
+        <div class="card">
+          <div class="img">
+            <img style="width: 400px;"
+              src="https://cdn.britannica.com/45/5645-050-B9EC0205/head-treasure-flower-disk-flowers-inflorescence-ray.jpg"
+              alt="image">
+          </div>
+          <div class="title">lorem6</div>
+          <div class="description">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nulla quidem quae, corrupti
+            tempore enim sit et corporis voluptatibus in totam excepturi facilis sapiente ipsam consequatur nostrum
+            doloribus. Quidem, eaque modi?</div>
+        </div>
+      </div>
+      <div>
+        <div class="card">
+          <div class="img">
+            <img style="width: 400px;"
+              src="https://cdn.britannica.com/45/5645-050-B9EC0205/head-treasure-flower-disk-flowers-inflorescence-ray.jpg"
+              alt="image">
+          </div>
+          <div class="title">lorem4</div>
+          <div class="description">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nulla quidem quae, corrupti
+            tempore enim sit et corporis voluptatibus in totam excepturi facilis sapiente ipsam consequatur nostrum
+            doloribus. Quidem, eaque modi?</div>
+        </div>
+        <div class="card">
+          <div class="img">
+            <img style="width: 400px;"
+              src="https://cdn.britannica.com/45/5645-050-B9EC0205/head-treasure-flower-disk-flowers-inflorescence-ray.jpg"
+              alt="image">
+          </div>
+          <div class="title">lorem5</div>
+          <div class="description">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nulla quidem quae, corrupti
+            tempore enim sit et corporis voluptatibus in totam excepturi facilis sapiente ipsam consequatur nostrum
+            doloribus. Quidem, eaque modi?</div>
+        </div>
+        <div class="card">
+          <div class="img">
+            <img style="width: 400px;"
+              src="https://cdn.britannica.com/45/5645-050-B9EC0205/head-treasure-flower-disk-flowers-inflorescence-ray.jpg"
+              alt="image">
+          </div>
+          <div class="title">lorem6</div>
+          <div class="description">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nulla quidem quae, corrupti
+            tempore enim sit et corporis voluptatibus in totam excepturi facilis sapiente ipsam consequatur nostrum
+            doloribus. Quidem, eaque modi?</div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  </html>
+
+
+</body>
+
+</html>
